@@ -1,34 +1,38 @@
     #"manajemen kontak"
-def melihat_kontak():
-    # Melihat Semua Kontak
-    if kontak:
-        for num, item in enumerate(kontak, start=1):
-            print(f'\n{num}. {item["nama"]} ({item["HP"]}, {item["email"]})')
-    else:
-        print("Kontak Masih Kosong!")
-        return 1
 
-def menambah_kontak():
-    # Menambahkan Kontak
-    nama = input("Masukan nama kontak: ")
-    HP = input("Masukan HP kontak: ")
-    email = input("Masukan email kontak: ")
-    kontak_baru = {"nama": nama, "HP": HP, "email": email}
-    kontak.append(kontak_baru)
-    print("Kontak Baru Berhasil ditambahkan!")
+class Kontak:
+    def __init__(self):
+        self.kontak = []
 
-def menghapus_kontak():
-    # Menghapus Kontak
-    if melihat_kontak() == 1:
-        return
-    else:
-        i_hapus = int(input("Masukan nomor kontak yang dihapus: "))
-        del kontak[i_hapus - 1]
-        print("Kontak yang dimaksud sudah dihapus!")
+    def melihat_kontak(self):
+        # Melihat Semua Kontak
+        if self.kontak:
+            for num, item in enumerate(self.kontak, start=1):
+                print(f'\n{num}. {item["nama"]} ({item["HP"]}, {item["email"]})')
+        else:
+            print("Kontak Masih Kosong!")
+            return 1
 
-kontak1 = {"nama" : "Albi", "HP" : "0822905322", "email" : "Albi@gmail.com"}
-kontak2 = {"nama" : "Arsyila", "HP" : "0822905323", "email" : "Arsyila@gmail.com"}
-kontak = [kontak1, kontak2]
+    def menambah_kontak(self):
+        # Menambahkan Kontak
+        nama = input("Masukan nama kontak: ")
+        HP = input("Masukan HP kontak: ")
+        email = input("Masukan email kontak: ")
+        kontak_baru = {"nama": nama, "HP": HP, "email": email}
+        self.kontak.append(kontak_baru)
+        print("Kontak Baru Berhasil ditambahkan!")
+
+    def menghapus_kontak(self):
+        # Menghapus Kontak
+        if self.melihat_kontak() == 1:
+            return
+        else:
+            i_hapus = int(input("Masukan nomor kontak yang dihapus: "))
+            del self.kontak[i_hapus - 1]
+            print("Kontak yang dimaksud sudah dihapus!")
+
+kontak_kantor = Kontak()
+kontak_keluarga = Kontak()
 
 while True:
 
@@ -41,13 +45,13 @@ while True:
     pilihan = input("Masukan pilihan menu kontak (1,2,3 atau 4): ")
 
     if pilihan == "1":
-       melihat_kontak()
+       kontak_kantor.melihat_kontak()
 
     elif pilihan == "2":
-        menambah_kontak()
+        kontak_kantor.menambah_kontak()
 
     elif pilihan == "3":
-        menghapus_kontak()
+        kontak_kantor.menghapus_kontak()
 
     elif pilihan == "4":
         # Keluar Dari Kontak
